@@ -100,6 +100,8 @@ namespace Unity.FPS.Gameplay
 
         public UnityAction<bool> OnStanceChanged;
 
+        public Animator animator;
+
         public Vector3 CharacterVelocity { get; set; }
         public bool IsGrounded { get; private set; }
         public bool HasJumpedThisFrame { get; private set; }
@@ -224,7 +226,7 @@ namespace Unity.FPS.Gameplay
         void OnDie()
         {
             IsDead = true;
-
+            animator.SetBool("isDead", true);
             // Tell the weapons manager to switch to a non-existing weapon in order to lower the weapon
             m_WeaponsManager.SwitchToWeaponIndex(-1, true);
 
@@ -303,6 +305,14 @@ namespace Unity.FPS.Gameplay
 
                 // converts move input to a worldspace vector based on our character's transform orientation
                 Vector3 worldspaceMoveInput = transform.TransformVector(m_InputHandler.GetMoveInput());
+                if(worldspaceMoveInput != Vector3.zero)
+                {
+                    animator.SetBool("isRun", true);
+                }
+                else
+                {
+                    animator.SetBool("isRun", false);
+                }
 
                 // handle grounded movement
                 if (IsGrounded)
@@ -446,6 +456,7 @@ namespace Unity.FPS.Gameplay
             if (crouched)
             {
                 m_TargetCharacterHeight = CapsuleHeightCrouching;
+                animator.SetBool("isCrouche", true);
             }
             else
             {
@@ -468,6 +479,7 @@ namespace Unity.FPS.Gameplay
                 }
 
                 m_TargetCharacterHeight = CapsuleHeightStanding;
+                animator.SetBool("isCrouche", false);
             }
 
             if (OnStanceChanged != null)

@@ -1090,6 +1090,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Id: 6f50059d-c3ce-4a13-92b1-35e816ee2b45
+--- !u!95 &1460881073 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3930999015807464435, guid: 62890da4204b7e0409a89ef30a7a084d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4037780044490036104}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1505209766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2141676431450117668, guid: cd17687759887a0438ee021e51abc9d9,
@@ -5204,6 +5210,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2981575430235865033, guid: 62890da4204b7e0409a89ef30a7a084d,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1460881073}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
