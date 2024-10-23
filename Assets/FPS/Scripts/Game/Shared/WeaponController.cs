@@ -234,16 +234,30 @@ namespace Unity.FPS.Game
             }
         }
 
+        public Camera TargetCamera;
+
         void Update()
         {
             UpdateAmmo();
             UpdateCharge();
             UpdateContinuousShootSound();
 
-            if (Time.deltaTime > 0)
+            //if (Time.deltaTime > 0)
+            //{
+            //    MuzzleWorldVelocity = (WeaponMuzzle.position - m_LastMuzzlePosition) / Time.deltaTime;
+            //    m_LastMuzzlePosition = WeaponMuzzle.position;
+            //}
+
+            if (TargetCamera != null)
             {
-                MuzzleWorldVelocity = (WeaponMuzzle.position - m_LastMuzzlePosition) / Time.deltaTime;
-                m_LastMuzzlePosition = WeaponMuzzle.position;
+                // Raycast from the center of the screen
+                Ray ray = TargetCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    // Rotate the weapon to face the hit point
+                    Vector3 targetDirection = hit.point - WeaponMuzzle.position;
+                    WeaponMuzzle.rotation = Quaternion.LookRotation(targetDirection);
+                }
             }
         }
 
