@@ -7,6 +7,8 @@ namespace Unity.FPS.Gameplay
     [RequireComponent(typeof(CharacterController), typeof(PlayerInputHandler), typeof(AudioSource))]
     public class PlayerCharacterController : MonoBehaviour
     {
+        public Vector3 camaraPosition = new Vector3(1.2f, 2.4f, -3.3f);
+
         [Header("References")] [Tooltip("Reference to the main camera used for the player")]
         public Camera PlayerCamera;
 
@@ -168,6 +170,7 @@ namespace Unity.FPS.Gameplay
             // force the crouch state to false when starting
             SetCrouchingState(false, true);
             UpdateCharacterHeight(true);
+
         }
 
         void Update()
@@ -214,6 +217,8 @@ namespace Unity.FPS.Gameplay
             UpdateCharacterHeight(false);
 
             HandleCharacterMovement();
+
+            PlayerCamera.transform.localPosition = camaraPosition;
         }
 
         void OnDie()
