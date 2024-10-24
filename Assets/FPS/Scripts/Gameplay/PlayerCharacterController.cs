@@ -225,6 +225,7 @@ namespace Unity.FPS.Gameplay
 
         void OnDie()
         {
+            Debug.Log("呼ばれたよ");
             IsDead = true;
             animator.SetBool("isDead", true);
             // Tell the weapons manager to switch to a non-existing weapon in order to lower the weapon
