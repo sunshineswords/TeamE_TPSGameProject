@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.FPS.Gameplay;
+using Unity.FPS.Game;
 
 public class Timermurase: MonoBehaviour
 {
-    public PlayerCharacterController characterController;
-    
+    public Health health;
+
+    private void Start()
+    {
+        if(health == null)
+        {
+            health=transform.GetComponent<Health>();
+        }
+    }
     //カウントダウン
     public float countdown = 5.0f;
 
@@ -28,6 +36,7 @@ public class Timermurase: MonoBehaviour
         if (countdown <= 0)
         {
             timeText.text = "時間になりました！";
+            health.Kill();
         }
     }
 }
