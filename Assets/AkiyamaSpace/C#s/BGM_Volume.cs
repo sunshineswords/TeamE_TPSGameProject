@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class BGM_Volume : MonoBehaviour
 {
     [SerializeField]
-    AudioMixer BGMMixer;
+    AudioMixer BGMMixer;//いじるミキサーを入れる
     [SerializeField]
-    Slider BGMSlider;
+    Slider BGMSlider;//操作するスライダーを入れる
 
     // Start is called before the first frame update
     void Start()
